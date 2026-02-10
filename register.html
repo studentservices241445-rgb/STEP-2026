@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>نموذج التسجيل</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="assets/img/logo.png">
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="assets/img/logo.png" alt="شعار أكاديمية عايد">
+      <strong>أكاديمية عايد</strong>
+    </div>
+    <nav>
+      <a href="index.html">الرئيسية</a>
+      <a href="course.html">الدورة</a>
+      <a href="step.html">اختبار STEP</a>
+      <a href="bank.html">التحويل البنكي</a>
+      <a href="register.html">التسجيل</a>
+    </nav>
+    <button id="theme-toggle" class="theme-toggle" title="تبديل الوضع">🌓</button>
+  </header>
+  <main>
+    <section class="section">
+      <h2>التسجيل في الدورة المكثفة</h2>
+      <p>يرجى تعبئة النموذج التالي بدقة لإتمام التسجيل. تأكد من تحويل الرسوم وإرفاق إيصال التحويل. بعد تعبئة البيانات والموافقة على التعهدات، سيتم توجيهك لفتح محادثة في تيليجرام مع رسالة جاهزة.</p>
+      <form id="registration-form">
+        <label for="name">الاسم الكامل</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="phone">رقم الجوال</label>
+        <input type="text" id="phone" name="phone" required>
+
+        <label for="email">البريد الإلكتروني</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="city">المدينة</label>
+        <input type="text" id="city" name="city" placeholder="اختياري">
+
+        <label>هل سبق أن اختبرت STEP؟</label>
+        <label><input type="radio" name="prevTest" value="yes"> نعم</label>
+        <label><input type="radio" name="prevTest" value="no" checked> لا</label>
+        <div id="prev-score-group" class="hidden">
+          <label for="prev-score">درجتك السابقة</label>
+          <input type="number" id="prev-score" name="prevScore" min="0" max="100">
+        </div>
+        <div id="target-score-group" class="hidden">
+          <label for="target-score">الدرجة المستهدفة</label>
+          <input type="number" id="target-score" name="targetScore" min="0" max="100">
+        </div>
+        <div id="difficulty-group" class="hidden">
+          <label for="difficulties">ما هي الصعوبات التي واجهتها؟</label>
+          <textarea id="difficulties" name="difficulties" rows="3"></textarea>
+        </div>
+
+        <label>هل قمت بحجز موعد اختبارك؟</label>
+        <label><input type="radio" name="booked" value="yes"> نعم</label>
+        <label><input type="radio" name="booked" value="no" checked> لا</label>
+        <div id="time-left-group" class="hidden">
+          <label for="time-left">كم باقي على اختبارك؟</label>
+          <select id="time-left" name="timeLeft">
+            <option value="<24h">أقل من ٢٤ ساعة</option>
+            <option value="3d">خلال ٣ أيام</option>
+            <option value="2w">أسبوعين</option>
+            <option value="1m">شهر</option>
+            <option value="more">أكثر من شهر</option>
+          </select>
+        </div>
+
+        <label>أضعف قسم لديك</label>
+        <label><input type="radio" name="weak-section" value="grammar"> القواعد</label>
+        <label><input type="radio" name="weak-section" value="reading"> القراءة</label>
+        <label><input type="radio" name="weak-section" value="listening"> الاستماع</label>
+        <label><input type="radio" name="weak-section" value="unsure" checked> غير متأكد</label>
+        <button type="button" id="start-test" class="btn-primary hidden">إجراء اختبار تحديد المستوى</button>
+        <input type="hidden" id="recommended-plan" name="recommendedPlan" value="">
+
+        <label for="receipt">إرفاق إيصال التحويل (صورة)</label>
+        <input type="file" id="receipt" name="receipt" accept="image/*" required>
+
+        <p>
+          بالموافقة على <a href="#" id="terms-link">التعهدات</a> و<a href="#" id="policy-link">سياسة الاسترجاع</a>، فإنك تقر بقراءة الشروط والموافقة عليها.
+        </p>
+        <button type="submit" id="submit-btn" class="btn-primary" disabled>إرسال التسجيل</button>
+      </form>
+    </section>
+  </main>
+  <footer>
+    © 2026 أكاديمية عايد – جميع الحقوق محفوظة.
+  </footer>
+
+  <!-- Level test modal -->
+  <div id="level-overlay" class="modal-overlay">
+    <div id="level-modal" class="modal" style="display: none;">
+      <button id="close-test" class="close">×</button>
+      <h3>اختبار تحديد المستوى (20 سؤال)</h3>
+      <div id="test-container"></div>
+      <div id="test-result"></div>
+      <button id="back-to-form" class="btn-primary hidden">الرجوع للنموذج</button>
+    </div>
+  </div>
+
+  <!-- Terms modal -->
+  <div class="modal-overlay" style="display: none;">
+    <div id="terms-modal" class="modal">
+      <button id="close-terms" class="close">×</button>
+      <h3>التعهدات</h3>
+      <p>أتعهد بحضور جميع المحاضرات المباشرة أو مشاهدة التسجيلات، وعدم مشاركة المحتوى مع الغير. أفهم أن الالتزام بالدراسة حسب الخطة المقترحة يساعدني على تحقيق النتائج المرجوة.</p>
+      <button id="accept-terms" class="btn-primary">أوافق</button>
+    </div>
+  </div>
+
+  <!-- Policy modal -->
+  <div class="modal-overlay" style="display: none;">
+    <div id="policy-modal" class="modal">
+      <button id="close-policy" class="close">×</button>
+      <h3>سياسة الاسترجاع</h3>
+      <p>يمكنك طلب استرجاع الرسوم خلال 24 ساعة قبل بدء الدورة. بعد بدء الدورة أو استلامك موادها، لا يمكن استرداد الرسوم. لمزيد من التفاصيل يرجى التواصل مع الأكاديمية.</p>
+      <button id="accept-policy" class="btn-primary">أوافق</button>
+    </div>
+  </div>
+
+  <!-- Chat assistant -->
+  <button id="chat-button">💬</button>
+  <div id="chat-box">
+    <header>المساعد</header>
+    <div id="chat-messages"></div>
+    <div id="chat-input">
+      <input id="chat-input-field" type="text" placeholder="اكتب سؤالك...">
+      <button id="chat-send">إرسال</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    // Handle submission: build message and open Telegram link
+    document.getElementById('registration-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      const phone = document.getElementById('phone').value;
+      const email = document.getElementById('email').value;
+      const city = document.getElementById('city').value;
+      const prevTest = this.elements['prevTest'].value;
+      const prevScore = document.getElementById('prev-score').value || 'N/A';
+      const targetScore = document.getElementById('target-score').value || 'N/A';
+      const difficulties = document.getElementById('difficulties').value || 'N/A';
+      const booked = this.elements['booked'].value;
+      const timeLeft = document.getElementById('time-left').value || 'N/A';
+      const weak = this.elements['weak-section'].value;
+      const plan = document.getElementById('recommended-plan').value || 'سيتم تحديدها في الدورة';
+      const message = `الاسم: ${name}%0Aرقم الجوال: ${phone}%0Aالبريد الإلكتروني: ${email}%0Aالمدينة: ${city}%0Aسبق أن اختبر STEP: ${prevTest}%0Aالدرجة السابقة: ${prevScore}%0Aالدرجة المستهدفة: ${targetScore}%0Aالصعوبات: ${difficulties}%0Aحجز موعد الاختبار: ${booked}%0Aالمدة المتبقية: ${timeLeft}%0Aأضعف قسم: ${weak}%0Aالخطة المقترحة: ${plan}%0A`; 
+      const url = `https://t.me/Ayed_Academy_2026?text=${encodeURIComponent(message)}`;
+      window.open(url, '_blank');
+      alert('سيتم فتح تيليجرام لإرسال بياناتك. شكراً لتسجيلك!');
+      // تقليل عدد المقاعد المتبقية
+      let seats = parseInt(localStorage.getItem('seatsRemaining'));
+      if (!isNaN(seats) && seats > 0) {
+        localStorage.setItem('seatsRemaining', seats - 1);
+      }
+      return false;
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>بيانات التحويل البنكي</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="assets/img/logo.png">
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="assets/img/logo.png" alt="شعار أكاديمية عايد">
+      <strong>أكاديمية عايد</strong>
+    </div>
+    <nav>
+      <a href="index.html">الرئيسية</a>
+      <a href="course.html">الدورة</a>
+      <a href="step.html">اختبار STEP</a>
+      <a href="bank.html">التحويل البنكي</a>
+      <a href="register.html">التسجيل</a>
+    </nav>
+    <button id="theme-toggle" class="theme-toggle" title="تبديل الوضع">🌓</button>
+  </header>
+  <main>
+    <section class="section">
+      <h2>تفاصيل الحساب البنكي</h2>
+      <p>لإتمام عملية التسجيل، يرجى تحويل الرسوم إلى الحساب البنكي التالي ومن ثم الاحتفاظ بالإيصال لإرفاقه في نموذج التسجيل.</p>
+      <div class="cards">
+        <div class="card">
+          <h3>اسم الحساب</h3>
+          <p id="account-name">أكاديمية عايد للتدريب</p>
+          <button class="copy-btn" data-target="account-name">نسخ</button>
+        </div>
+        <div class="card">
+          <h3>رقم الحساب</h3>
+          <p id="account-number">1234567890123</p>
+          <button class="copy-btn" data-target="account-number">نسخ</button>
+        </div>
+        <div class="card">
+          <h3>رقم الآيبان</h3>
+          <p id="iban">SA1230001234567890123456</p>
+          <button class="copy-btn" data-target="iban">نسخ</button>
+        </div>
+        <div class="card">
+          <h3>البنك</h3>
+          <p id="bank-name">البنك الأهلي السعودي</p>
+          <button class="copy-btn" data-target="bank-name">نسخ</button>
+        </div>
+      </div>
+      <p style="margin-top: 20px;">بعد إتمام التحويل، يرجى الاحتفاظ بصورة الإيصال والتوجه إلى نموذج التسجيل لإرفاقه والموافقة على التعهدات.</p>
+      <p>
+        <a class="btn-primary" href="register.html">الانتقال إلى نموذج التسجيل</a>
+      </p>
+    </section>
+  </main>
+  <footer>
+    © 2026 أكاديمية عايد – جميع الحقوق محفوظة.
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
